@@ -1,0 +1,811 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="IPC," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="&amp;#x5BF9;&amp;#x4E8E;Binder&amp;#x7684;&amp;#x5B66;&amp;#x4E60;&amp;#x53C2;&amp;#x8003;&amp;#x4EE5;&amp;#x4E0B;&amp;#x51E0;&amp;#x7BC7;&amp;#x6587;&amp;#x7AE0;&amp;#xFF0C;&amp;#x5BF9;&amp;#x6B64;&amp;#x5BF9;&amp;#x4ED6;&amp;#x4EEC;&amp;#x7684;&amp;#x4ED8;&amp;#x51FA;&amp;#x8868;&amp;#x793A;&amp;#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android进程通讯学习笔记01">
+<meta property="og:url" content="http://yoursite.com/2016/09/07/Android_Binder学习笔记/index.html">
+<meta property="og:site_name" content="Lev's World">
+<meta property="og:description" content="&amp;#x5BF9;&amp;#x4E8E;Binder&amp;#x7684;&amp;#x5B66;&amp;#x4E60;&amp;#x53C2;&amp;#x8003;&amp;#x4EE5;&amp;#x4E0B;&amp;#x51E0;&amp;#x7BC7;&amp;#x6587;&amp;#x7AE0;&amp;#xFF0C;&amp;#x5BF9;&amp;#x6B64;&amp;#x5BF9;&amp;#x4ED6;&amp;#x4EEC;&amp;#x7684;&amp;#x4ED8;&amp;#x51FA;&amp;#x8868;&amp;#x793A;&amp;#">
+<meta property="og:updated_time" content="2016-09-13T02:10:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android进程通讯学习笔记01">
+<meta name="twitter:description" content="&amp;#x5BF9;&amp;#x4E8E;Binder&amp;#x7684;&amp;#x5B66;&amp;#x4E60;&amp;#x53C2;&amp;#x8003;&amp;#x4EE5;&amp;#x4E0B;&amp;#x51E0;&amp;#x7BC7;&amp;#x6587;&amp;#x7AE0;&amp;#xFF0C;&amp;#x5BF9;&amp;#x6B64;&amp;#x5BF9;&amp;#x4ED6;&amp;#x4EEC;&amp;#x7684;&amp;#x4ED8;&amp;#x51FA;&amp;#x8868;&amp;#x793A;&amp;#">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/09/07/Android_Binder学习笔记/"/>
+
+  <title> Android进程通讯学习笔记01 | Lev's World </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Lev's World</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
+            
+            留言
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Android进程通讯学习笔记01
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-07T10:26:24+08:00" content="2016-09-07">
+              2016-09-07
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android-Source-Read/" itemprop="url" rel="index">
+                    <span itemprop="name">Android Source Read</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/07/Android_Binder学习笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/07/Android_Binder学习笔记/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/09/07/Android_Binder学习笔记/" class="leancloud_visitors" data-flag-title="Android进程通讯学习笔记01">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&#x5BF9;&#x4E8E;Binder&#x7684;&#x5B66;&#x4E60;&#x53C2;&#x8003;&#x4EE5;&#x4E0B;&#x51E0;&#x7BC7;&#x6587;&#x7AE0;&#xFF0C;&#x5BF9;&#x6B64;&#x5BF9;&#x4ED6;&#x4EEC;&#x7684;&#x4ED8;&#x51FA;&#x8868;&#x793A;&#x611F;&#x8C22;&#x3002;</p>
+<ul>
+<li><a href="http://blog.csdn.net/universus/article/details/6211589#comments" target="_blank" rel="external">Android Bander&#x8BBE;&#x8BA1;&#x4E0E;&#x5B9E;&#x73B0; - &#x8BBE;&#x8BA1;&#x7BC7;</a></li>
+<li><a href="http://www.cnblogs.com/innost/archive/2011/01/09/1931456.html" target="_blank" rel="external">Android&#x6DF1;&#x5165;&#x6D45;&#x51FA;&#x4E4B;Binder&#x673A;&#x5236;</a></li>
+<li><a href="http://blog.csdn.net/luoshengyang/article/details/6618363" target="_blank" rel="external"> Android&#x8FDB;&#x7A0B;&#x95F4;&#x901A;&#x4FE1;&#xFF08;IPC&#xFF09;&#x673A;&#x5236;Binder&#x7B80;&#x8981;&#x4ECB;&#x7ECD;&#x548C;&#x5B66;&#x4E60;&#x8BA1;&#x5212;</a></li>
+<li><a href="http://www.cnblogs.com/albert1017/p/3849585.html" target="_blank" rel="external">&#xFF08;&#x539F;&#x521B;&#xFF09;Android Binder&#x8BBE;&#x8BA1;&#x4E0E;&#x5B9E;&#x73B0; - &#x5B9E;&#x73B0;&#x7BC7;&#xFF08;1&#xFF09;</a></li>
+</ul>
+<p>&#x4EE5;&#x4E0B;&#x4E5F;&#x662F;&#x81EA;&#x5DF1;&#x5BF9;&#x4E8E;&#x6240;&#x5B66;&#x4E60;&#x5230;&#x7684;&#x77E5;&#x8BC6;&#x8FDB;&#x884C;&#x68B3;&#x7406;&#xFF0C;&#x4E5F;&#x662F;&#x4E00;&#x4E2A;&#x81EA;&#x6211;&#x5BA1;&#x67E5;&#x7684;&#x8FC7;&#x7A0B;&#x3002;&#x901A;&#x8FC7;&#x4E0A;&#x9762;&#x7684;&#x6587;&#x7AE0;&#x5B66;&#x4E60;&#xFF0C;&#x5BF9;&#x4E8E;Binder&#x6709;&#x4E86;&#x4E00;&#x4E2A;&#x5927;&#x7684;&#x8F6E;&#x5ED3;&#xFF1A;</p>
+<ol>
+<li>Binder&#x9A71;&#x52A8;&#x7684;&#x521B;&#x5EFA;</li>
+<li>ServiceManager&#x4F5C;&#x4E3A;&#x4E00;&#x4E2A;server&#x600E;&#x4E48;&#x628A;&#x81EA;&#x5DF1;&#x53D8;&#x6210;&#x7BA1;&#x7406;&#x8005;&#xFF0C;&#x4EE5;&#x53CA;&#x5982;&#x4F55;&#x7BA1;&#x7406;Server</li>
+<li>Server&#x7684;&#x6CE8;&#x518C;</li>
+<li>Client&#x5982;&#x4F55;&#x4E0E;Server&#x5EFA;&#x7ACB;&#x8FDE;&#x63A5;</li>
+</ol>
+<a id="more"></a>
+<h2 id="&#x8FDB;&#x7A0B;&#x95F4;&#x901A;&#x8BAF;why"><a href="#&#x8FDB;&#x7A0B;&#x95F4;&#x901A;&#x8BAF;why" class="headerlink" title="&#x8FDB;&#x7A0B;&#x95F4;&#x901A;&#x8BAF;why"></a>&#x8FDB;&#x7A0B;&#x95F4;&#x901A;&#x8BAF;why</h2><p>&#x8FD9;&#x662F;&#x6211;&#x81EA;&#x5DF1;&#x4E00;&#x76F4;&#x90FD;&#x7EA0;&#x7ED3;&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x6709;&#x8FDB;&#x7A0B;&#x95F4;&#x7684;&#x901A;&#x8BAF;&#xFF0C;&#x4F1A;&#x6709;&#x8FD9;&#x4E2A;&#x7591;&#x95EE;&#xFF0C;&#x662F;&#x56E0;&#x4E3A;&#x4E2A;&#x4EBA;&#x5BF9;&#x7CFB;&#x7EDF;&#x8BBE;&#x8BA1;&#x4E0D;&#x662F;&#x5F88;&#x4E86;&#x89E3;&#x3002;&#x6240;&#x4EE5;&#x5BF9;&#x4E8E;&#x4EE5;&#x4E0B;&#x7684;&#x60F3;&#x6CD5;&#x4E5F;&#x662F;&#x57FA;&#x4E8E;&#x6211;&#x73B0;&#x6709;&#x7684;&#x77E5;&#x8BC6;&#x6682;&#x65F6;&#x731C;&#x60F3;&#x3002;</p>
+<font color="red">&#x4E3A;&#x4EC0;&#x4E48;&#x4F1A;&#x51FA;&#x73B0;&#x8FDB;&#x7A0B;&#x901A;&#x8BAF;&#xFF1F;</font>&#x8981;&#x5F52;&#x7ED3;&#x4E8E;&#x865A;&#x62DF;&#x5185;&#x5B58;&#x6280;&#x672F;&#xFF0C;&#x5728;&#x73B0;&#x4EE3;&#x63D0;&#x4F9B;&#x7684;&#x4E24;&#x79CD;&#x865A;&#x62DF;&#x673A;&#x5236;&#xFF1A;&#x865A;&#x62DF;&#x5904;&#x7406;&#x5668;&#x548C;&#x865A;&#x62DF;&#x5185;&#x5B58;&#x3002;&#x867D;&#x7136;&#x5B9E;&#x9645;&#x4E0A;&#x53EF;&#x80FD;&#x662F;&#x8BB8;&#x591A;&#x8FDB;&#x7A0B;&#x6B63;&#x5728;&#x5206;&#x4EAB;&#x4E00;&#x4E2A;&#x5904;&#x7406;&#x5668;&#xFF0C;&#x4F46;&#x662F;&#x865A;&#x62DF;&#x5904;&#x7406;&#x5668;&#x7ED9;&#x8FDB;&#x7A0B;&#x4E00;&#x79CD;&#x5047;&#x8C61;&#xFF0C;&#x8BA9;&#x8FD9;&#x4E9B;&#x8FDB;&#x7A0B;&#x89C9;&#x5F97;&#x81EA;&#x5DF1;&#x72EC;&#x5904;&#x5904;&#x7406;&#x5668;&#x3002;&#x90A3;&#x4E48;&#x95EE;&#x9898;&#x5C31;&#x6765;&#x4E86;<font color="red">&#x5982;&#x679C;&#x8FDB;&#x7A0B;&#x95F4;&#x9700;&#x8981;&#x4E92;&#x6362;&#x6570;&#x636E;&#x600E;&#x4E48;&#x529E;&#xFF0C;&#x6570;&#x636E;&#x4EA4;&#x4E92;&#x9700;&#x8981;&#x77E5;&#x9053;&#x6570;&#x636E;&#x5B58;&#x50A8;&#x7684;&#x5185;&#x5B58;&#x4F4D;&#x7F6E;&#xFF0C;&#x8FD9;&#x5C31;&#x8981;&#x9700;&#x8981;&#x4E00;&#x4E2A;&#x673A;&#x5236;&#x53BB;&#x4FDD;&#x8BC1;&#xFF0C;&#x5047;&#x8BBE;A&#x8FDB;&#x7A0B;&#x5728;0x0011&#x5904;&#x5B58;&#x50A8;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x544A;&#x8BC9;B&#x8FDB;&#x7A0B;&#x7684;&#x65F6;&#x5019;&#xFF0C;B&#x8FDB;&#x7A0B;&#x80FD;&#x591F;&#x627E;&#x5230;&#x8FD9;&#x4E2A;&#x6570;&#x636E;&#x5B58;&#x50A8;&#x5730;&#x5740;&#xFF0C;&#x7136;&#x800C;&#x900F;&#x4F20;&#x5230;B&#x8FDB;&#x7A0B;&#x662F;&#x4E0D;&#x53EF;&#x80FD;&#x627E;&#x5230;&#x7684;&#xFF0C;&#x56E0;&#x4E3A;&#x76F8;&#x540C;&#x7684;&#x5185;&#x5B58;&#x5730;&#x5740;&#x5728;&#x4E0D;&#x540C;&#x7684;&#x8FDB;&#x7A0B;&#x5B58;&#x50A8;&#x7684;&#x4EC0;&#x4E48;&#x4E1C;&#x897F;&#x90FD;&#x4E0D;&#x4E00;&#x6837;&#xFF0C;&#x8FD9;&#x5C31;&#x9700;&#x8981;&#x4E00;&#x4E2A;&#x4E2D;&#x95F4;&#x5C42;&#x8FDB;&#x884C;&#x8F6C;&#x6362;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x9700;&#x8981;&#x63D0;&#x51FA;&#x4E00;&#x4E2A;&#x8FDB;&#x7A0B;&#x95F4;&#x901A;&#x8BAF;&#x7684;&#x5B9E;&#x73B0;&#x4E86;</font>
+
+<h2 id="Android-Binder"><a href="#Android-Binder" class="headerlink" title="Android Binder"></a>Android Binder</h2><p>Android&#x8FDB;&#x7A0B;&#x901A;&#x8BAF;&#x6D89;&#x53CA;&#x5230;&#x56DB;&#x4E2A;&#x5BF9;&#x8C61;<code>Client</code> <code>Server</code> <code>ServiceManager</code> <code>Binder&#x9A71;&#x52A8;</code>&#x3002;</p>
+<p>&#x5BA2;&#x6237;&#x7AEF;&#x548C;&#x670D;&#x52A1;&#x7AEF;&#x5F88;&#x597D;&#x7406;&#x89E3;&#xFF0C;&#x6BD4;&#x5982;&#x6211;&#x4EEC;&#x7528;&#x5230;&#x7CFB;&#x7EDF;&#x7684;media&#x670D;&#x52A1;&#x65F6;&#xFF0C;&#x6211;&#x4EEC;&#x7684;&#x5E94;&#x7528;&#x5C31;&#x662F;&#x5BA2;&#x6237;&#x7AEF;&#xFF0C;&#x800C;&#x7CFB;&#x7EDF;&#x63D0;&#x4F9B;&#x7684;&#x5C31;&#x662F;&#x670D;&#x52A1;&#x7AEF;&#x3002;<code>ServiceManager</code>&#x662F;&#x7528;&#x6765;&#x7BA1;&#x7406;&#x670D;&#x52A1;&#x7684;&#x540C;&#x65F6;&#x5B83;&#x81EA;&#x8EAB;&#x4E5F;&#x662F;&#x4E00;&#x4E2A;<code>Server</code>&#xFF0C;&#x4EE5;&#x4FBF;&#x6211;&#x4EEC;&#x80FD;&#x5FEB;&#x901F;&#x7684;&#x627E;&#x5230;&#x9700;&#x8981;&#x7684;&#x670D;&#x52A1;&#x5E76;&#x8FDB;&#x884C;&#x8FDE;&#x63A5;&#x3002;<code>Binder&#x9A71;&#x52A8;</code>&#x5219;&#x63D0;&#x4F9B;&#x4E86;&#x8FDB;&#x7A0B;&#x95F4;&#x6570;&#x636E;&#x4E92;&#x6362;&#x7684;&#x80FD;&#x529B;&#x3002;</p>
+<p>&#x5176;&#x4E2D;<code>Client</code>&#x3001;<code>Server</code>&#x3001;<code>ServiceManager</code>&#x662F;&#x8FD0;&#x884C;&#x5728;&#x7528;&#x6237;&#x7A7A;&#x95F4;&#xFF0C;&#x800C;<code>Binder&#x9A71;&#x52A8;</code>&#x5219;&#x8FD0;&#x884C;&#x5728;&#x5185;&#x6838;&#x7A7A;&#x95F4;&#x3002;</p>
+<h3 id="Binder&#x9A71;&#x52A8;&#x7684;&#x521B;&#x5EFA;"><a href="#Binder&#x9A71;&#x52A8;&#x7684;&#x521B;&#x5EFA;" class="headerlink" title="Binder&#x9A71;&#x52A8;&#x7684;&#x521B;&#x5EFA;"></a>Binder&#x9A71;&#x52A8;&#x7684;&#x521B;&#x5EFA;</h3><h3 id="ServiceManager&#x7684;&#x521B;&#x5EFA;&#x4EE5;&#x53CA;&#x63D0;&#x4F9B;&#x7684;&#x670D;&#x52A1;"><a href="#ServiceManager&#x7684;&#x521B;&#x5EFA;&#x4EE5;&#x53CA;&#x63D0;&#x4F9B;&#x7684;&#x670D;&#x52A1;" class="headerlink" title="ServiceManager&#x7684;&#x521B;&#x5EFA;&#x4EE5;&#x53CA;&#x63D0;&#x4F9B;&#x7684;&#x670D;&#x52A1;"></a>ServiceManager&#x7684;&#x521B;&#x5EFA;&#x4EE5;&#x53CA;&#x63D0;&#x4F9B;&#x7684;&#x670D;&#x52A1;</h3><p>service manager&#x5728;&#x7528;&#x6237;&#x7A7A;&#x95F4;&#x7684;&#x6E90;&#x7801;<code>frameworks/base/cmds/servicemanager</code>&#x4E0B;&#xFF0C;&#x8BE5;&#x5305;&#x4E0B;&#x9762;&#x4E3B;&#x8981;&#x6709;<code>binder.h</code> <code>binder.c</code> <code>service_manager.c</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"># frameworks/base/cmds/servicemanager/service_manager.c</div><div class="line"></div><div class="line">// service manager&#x7684;&#x5165;&#x53E3;&#x51FD;&#x6570;</div><div class="line">int main(int argc, char **argv)</div><div class="line">{</div><div class="line">    struct binder_state *bs;</div><div class="line">    void *svcmgr = BINDER_SERVICE_MANAGER;</div><div class="line"></div><div class="line">    bs = binder_open(128*1024);	// &#x6253;&#x5F00;&#x9A71;&#x52A8;&#x8BBE;&#x5907;&#xFF0C;&#x83B7;&#x53D6;&#x4E0E;&#x9A71;&#x52A8;&#x901A;&#x8BAF;&#x7684;&#x80FD;&#x529B;</div><div class="line"></div><div class="line">    if (binder_become_context_manager(bs)) { // &#x5C06;&#x81EA;&#x5DF1;&#x8BBE;&#x7F6E;&#x6CA1;manager</div><div class="line">        LOGE(&quot;cannot become context manager (%s)\n&quot;, strerror(errno));</div><div class="line">        return -1;</div><div class="line">    }</div><div class="line"></div><div class="line">    svcmgr_handle = svcmgr;	// &#x53E5;&#x67C4;&#xFF0C;ServiceManager&#x7684;Binder&#x662F;&#x6BD4;&#x8F83;&#x7279;&#x6B8A;&#x7684;&#xFF0C;&#x53E5;&#x67C4;&#x4E3A;0</div><div class="line">    binder_loop(bs, svcmgr_handler);	// &#x5F00;&#x542F;loop&#xFF0C;&#x7B49;&#x5F85;&#x5BA2;&#x6237;&#x7AEF;&#x7684;&#x8BF7;&#x6C42;</div><div class="line">    return 0;</div><div class="line">}</div></pre></td></tr></table></figure>
+<p>&#x8FD9;&#x91CC;&#x5C31;&#x505A;&#x4E86;&#x4E09;&#x4EF6;&#x4E8B;&#x60C5;</p>
+<ol>
+<li><p>&#x6253;&#x5F00;&#x9A71;&#x52A8;&#x8BBE;&#x5907;&#xFF0C;&#x83B7;&#x53D6;&#x4E0E;&#x9A71;&#x52A8;&#x901A;&#x8BAF;&#x7684;&#x80FD;&#x529B;&#xFF08;&#x5C06;&#x7269;&#x7406;&#x5185;&#x5B58;<code>/dev/binder</code>&#x6620;&#x5C04;&#x5230;&#x865A;&#x62DF;&#x5185;&#x5B58;&#x7A7A;&#x95F4;&#xFF09;</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">#path:frameworks/base/cmds/servicemanager/binder.c</div><div class="line">struct binder_state *binder_open(unsigned mapsize)</div><div class="line">{</div><div class="line">    struct binder_state *bs;</div><div class="line"></div><div class="line">    bs = malloc(sizeof(*bs));</div><div class="line">  </div><div class="line">    bs-&gt;fd = open(&quot;/dev/binder&quot;, O_RDWR);</div><div class="line"> </div><div class="line">    bs-&gt;mapsize = mapsize;</div><div class="line">    bs-&gt;mapped = mmap(NULL, mapsize, PROT_READ, MAP_PRIVATE, bs-&gt;fd, 0);</div><div class="line">   </div><div class="line">    return bs;</div><div class="line">}</div></pre></td></tr></table></figure>
+</li>
+<li><p>Binder&#x534F;&#x8BAE;&#x57FA;&#x672C;&#x683C;&#x5F0F;&#x662F;&#xFF08;&#x547D;&#x4EE4;+&#x6570;&#x636E;&#xFF09;&#xFF0C;&#x4F7F;&#x7528;ioctl(fd, cmd, arg)&#x51FD;&#x6570;&#x5B9E;&#x73B0;&#x4EA4;&#x4E92;&#x3002;&#x8FD9;&#x91CC;&#x901A;&#x8FC7;<code>BINDER_SET_CONTEXT_MGR</code>&#x547D;&#x4EE4;&#xFF0C;&#x544A;&#x8BC9;<code>Binder&#x9A71;&#x52A8;</code>&#xFF0C;&#x5C06;&#x81EA;&#x5DF1;&#x8BBE;&#x7F6E;&#x4E3A;manager</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">#path:frameworks/base/cmds/servicemanager/binder.c	</div><div class="line">int binder_become_context_manager(struct binder_state *bs)</div><div class="line">{</div><div class="line">    return ioctl(bs-&gt;fd, BINDER_SET_CONTEXT_MGR, 0);</div><div class="line">}</div></pre></td></tr></table></figure>
+</li>
+<li><p>&#x5F00;&#x542F;loop&#xFF0C;&#x7B49;&#x5F85;&#x5BA2;&#x6237;&#x7AEF;&#x7684;&#x8BF7;&#x6C42;</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">#path:frameworks/base/cmds/servicemanager/binder.c</div><div class="line">void binder_loop(struct binder_state *bs, binder_handler func)</div><div class="line">{</div><div class="line">    int res;</div><div class="line">    struct binder_write_read bwr;</div><div class="line">    unsigned readbuf[32];</div><div class="line"></div><div class="line">    bwr.write_size = 0;</div><div class="line">    bwr.write_consumed = 0;</div><div class="line">    bwr.write_buffer = 0;</div><div class="line">    </div><div class="line">    readbuf[0] = BC_ENTER_LOOPER; // &#x544A;&#x8BC9;Binder&#x9A71;&#x52A8;&#x6211;&#x8981;&#x5F00;&#x59CB;&#x63D0;&#x4F9B;&#x670D;&#x52A1;&#x4E86;</div><div class="line">    binder_write(bs, readbuf, sizeof(unsigned)); // &#x5411;Binder&#x8BBE;&#x5907;&#x5199;&#x6570;&#x636E;</div><div class="line"></div><div class="line">    for (;;) {</div><div class="line">        bwr.read_size = sizeof(readbuf);</div><div class="line">        bwr.read_consumed = 0;</div><div class="line">        bwr.read_buffer = (unsigned) readbuf;</div><div class="line"></div><div class="line">        res = ioctl(bs-&gt;fd, BINDER_WRITE_READ, &amp;bwr); // &#x8BFB;Binder&#x4E2D;&#x7684;&#x6570;&#x636E;</div><div class="line"></div><div class="line">        if (res &lt; 0) {</div><div class="line">            LOGE(&quot;binder_loop: ioctl failed (%s)\n&quot;, strerror(errno));</div><div class="line">            break;</div><div class="line">        }</div><div class="line"></div><div class="line">        res = binder_parse(bs, 0, readbuf, bwr.read_consumed, func); // &#x89E3;&#x6790;Binder&#x4E2D;&#x8BFB;&#x53D6;&#x7684;&#x6570;&#x636E;</div><div class="line">        if (res == 0) {</div><div class="line">            LOGE(&quot;binder_loop: unexpected reply?!\n&quot;);</div><div class="line">            break;</div><div class="line">        }</div><div class="line">        if (res &lt; 0) {</div><div class="line">            LOGE(&quot;binder_loop: io error %d %s\n&quot;, res, strerror(errno));</div><div class="line">            break;</div><div class="line">        }</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><span style="color:red">&#x8FD9;&#x91CC;&#x6709;&#x4E00;&#x4E2A;&#x95EE;&#x9898;&#xFF0C;&#x5FAA;&#x73AF;&#x8BFB;&#x5230;&#x6D88;&#x606F;&#x540E;&#x8FDB;&#x884C;&#x89E3;&#x6790;&#xFF0C;&#x5982;&#x4F55;&#x4F20;&#x9012;&#x5230;&#x6700;&#x7EC8;&#x7684;service_manager.c&#x8FDB;&#x884C;&#x5904;&#x7406;&#x7684;&#xFF1F;</span></p>
+<h4 id="ServiceManager&#x63D0;&#x4F9B;&#x54EA;&#x4E9B;&#x670D;&#x52A1;"><a href="#ServiceManager&#x63D0;&#x4F9B;&#x54EA;&#x4E9B;&#x670D;&#x52A1;" class="headerlink" title="ServiceManager&#x63D0;&#x4F9B;&#x54EA;&#x4E9B;&#x670D;&#x52A1;"></a>ServiceManager&#x63D0;&#x4F9B;&#x54EA;&#x4E9B;&#x670D;&#x52A1;</h4><p>ServiceManager&#x4E3B;&#x8981;&#x63D0;&#x4F9B;&#x6DFB;&#x52A0;&#x548C;&#x67E5;&#x8BE2;&#x670D;&#x52A1;&#x3002;</p>
+<h3 id="Server&#x7684;&#x521B;&#x5EFA;&#x3001;&#x6CE8;&#x518C;&#x3001;&#x63D0;&#x4F9B;&#x670D;&#x52A1;"><a href="#Server&#x7684;&#x521B;&#x5EFA;&#x3001;&#x6CE8;&#x518C;&#x3001;&#x63D0;&#x4F9B;&#x670D;&#x52A1;" class="headerlink" title="Server&#x7684;&#x521B;&#x5EFA;&#x3001;&#x6CE8;&#x518C;&#x3001;&#x63D0;&#x4F9B;&#x670D;&#x52A1;"></a>Server&#x7684;&#x521B;&#x5EFA;&#x3001;&#x6CE8;&#x518C;&#x3001;&#x63D0;&#x4F9B;&#x670D;&#x52A1;</h3><p>&#x4EE5;MediaService&#x4E3A;&#x4F8B;&#x8BF4;&#x660E;,&#x5177;&#x4F53;&#x4EE3;&#x7801;&#x6211;&#x5C31;&#x4E0D;&#x4E00;&#x4E00;&#x770B;&#x4E86;&#xFF0C;&#x4E3B;&#x8981;&#x662F;&#x68B3;&#x7406;&#x6D41;&#x7A0B;&#x3002;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">#path:frameworks\base\media\mediaserver\main_mediaserver.cpp</div><div class="line">int main(int argc, char** argv)</div><div class="line">{</div><div class="line">    sp&lt;ProcessState&gt; proc(ProcessState::self()); </div><div class="line">    sp&lt;IServiceManager&gt; sm = defaultServiceManager(); // &#x83B7;&#x53D6;serviceManager&#x5BF9;&#x8C61;</div><div class="line">    LOGI(&quot;ServiceManager: %p&quot;, sm.get());</div><div class="line">    AudioFlinger::instantiate();</div><div class="line">    MediaPlayerService::instantiate(); // MediaPlayerService &#x521D;&#x59CB;&#x5316;</div><div class="line">    CameraService::instantiate();</div><div class="line">    AudioPolicyService::instantiate();</div><div class="line">    ProcessState::self()-&gt;startThreadPool(); // &#x5F00;&#x542F;loop</div><div class="line">    IPCThreadState::self()-&gt;joinThreadPool(); </div><div class="line">}</div></pre></td></tr></table></figure>
+<p>&#x5F00;&#x59CB;&#x987A;&#x5E8F;&#x8BF4;&#xFF1A;</p>
+<ol>
+<li><p>&#x521D;&#x59CB;&#x5316;<code>ProcessState</code>&#xFF0C;ProcessState&#x521D;&#x59CB;&#x5316;&#x8FC7;&#x7A0B;&#x4E2D;&#x505A;&#x4E86;&#x4EE5;&#x4E0B;&#x64CD;&#x4F5C;&#xFF0C;<font color="red">&#x6253;&#x5F00;Binder&#x8BBE;&#x5907;&#xFF0C;&#x8FD9;&#x4E2A;&#x662F;&#x901A;&#x8BAF;&#x7684;&#x57FA;&#x7840;</font>&#xFF0C;&#x5C06;&#x8BBE;&#x5907;&#x6620;&#x5C04;&#x5230;&#x5185;&#x5B58;&#x4E2D;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">#path:frameworks\base\libs\binder\ProcessState.cpp</div><div class="line">ProcessState::ProcessState()</div><div class="line">    : mDriverFD(open_driver()) // &#x6253;&#x5F00;Driver</div><div class="line">    , mVMStart(MAP_FAILED)</div><div class="line">    , mManagesContexts(false)</div><div class="line">    , mBinderContextCheckFunc(NULL)</div><div class="line">    , mBinderContextUserData(NULL)</div><div class="line">    , mThreadPoolStarted(false)</div><div class="line">    , mThreadPoolSeq(1)</div><div class="line">{</div><div class="line">    if (mDriverFD &gt;= 0) {</div><div class="line">        // XXX Ideally, there should be a specific define for whether we</div><div class="line">        // have mmap (or whether we could possibly have the kernel module</div><div class="line">        // availabla).</div><div class="line">#if !defined(HAVE_WIN32_IPC)</div><div class="line">        // mmap the binder, providing a chunk of virtual address space to receive transactions.</div><div class="line">        mVMStart = mmap(0, BINDER_VM_SIZE, PROT_READ, MAP_PRIVATE | MAP_NORESERVE, mDriverFD, 0);  // &#x5185;&#x5B58;&#x6620;&#x5C04;</div><div class="line">        if (mVMStart == MAP_FAILED) {</div><div class="line">            // *sigh*</div><div class="line">            LOGE(&quot;Using /dev/binder failed: unable to mmap transaction memory.\n&quot;);</div><div class="line">            close(mDriverFD);</div><div class="line">            mDriverFD = -1;</div><div class="line">        }</div><div class="line">#else</div><div class="line">        mDriverFD = -1;</div><div class="line">#endif</div><div class="line">    }</div><div class="line">    if (mDriverFD &lt; 0) {</div><div class="line">        // Need to run without the driver, starting our own thread pool.</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+</li>
+<li><p>&#x83B7;&#x53D6;ServiceManager&#x4EE3;&#x7406;&#xFF0C;&#x6700;&#x540E;&#x8FD4;&#x56DE;&#x7684;ServiceManager&#x662F;&#x5B9E;&#x4F53;BpServiceManager</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">#path:frameworks\base\libs\binder\IServiceManager.cpp</div><div class="line">sp&lt;IServiceManager&gt; defaultServiceManager()</div><div class="line">{</div><div class="line">    if (gDefaultServiceManager != NULL) return gDefaultServiceManager;</div><div class="line">    {</div><div class="line">        AutoMutex _l(gDefaultServiceManagerLock);</div><div class="line">        if (gDefaultServiceManager == NULL) {</div><div class="line">            gDefaultServiceManager = interface_cast&lt;IServiceManager&gt;(</div><div class="line">                ProcessState::self()-&gt;getContextObject(NULL)); </div><div class="line">        }</div><div class="line">    }</div><div class="line">    return gDefaultServiceManager;</div><div class="line">}</div></pre></td></tr></table></figure>
+</li>
+<li><p>MediaPlayerService&#x521D;&#x59CB;&#x5316;&#xFF0C;&#x8FD9;&#x91CC;&#x4F1A;&#x5C06;Media&#x670D;&#x52A1;&#x52A0;&#x5165;ServiceManager&#x7684;&#x94FE;&#x8868;&#x4E2D;&#x8FDB;&#x884C;&#x7BA1;&#x7406;&#xFF0C;&#x540C;&#x65F6;&#x5728;Binder&#x9A71;&#x52A8;&#x4E2D;&#x8BA1;&#x6570;&#x52A0;&#x4E00;&#x3002;&#x8FD9;&#x91CC;addService&#x7684;&#x8BF7;&#x6C42;&#x5982;&#x4F55;&#x53D1;&#x9001;&#x5230;ServiceManager&#x7684;&#xFF1F;&#x8FD9;&#x4E2A;&#x5C31;&#x5230;&#x4E86;Client&#x5982;&#x4F55;&#x4E0E;Server&#x901A;&#x8BAF;&#x7684;&#xFF0C;&#x5C06;&#x5728;&#x540E;&#x9762;&#x5177;&#x4F53;&#x518D;&#x8BF4;&#x8FD9;&#x4E2A;</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">#path:framework\base\media\libmediaplayerservice\MediaPlayerService.cpp</div><div class="line">void MediaPlayerService::instantiate() {</div><div class="line">    defaultServiceManager()-&gt;addService(</div><div class="line">            String16(&quot;media.player&quot;), new MediaPlayerService()); //&#x8C03;&#x7528;&#x7684;&#x662F;BpServiceManager&#x7684;addService</div><div class="line">}</div></pre></td></tr></table></figure>
+</li>
+<li><p>&#x5F00;&#x542F;server&#x7684;loop&#x5FAA;&#x73AF;&#xFF0C;&#x7B49;&#x5F85;&#x5BA2;&#x6237;&#x7AEF;&#x53D1;&#x9001;&#x7684;&#x6D88;&#x606F;</p>
+</li>
+</ol>
+<h3 id="Client&#x5982;&#x4F55;&#x5E94;&#x7528;Server&#x63D0;&#x4F9B;&#x7684;&#x670D;&#x52A1;"><a href="#Client&#x5982;&#x4F55;&#x5E94;&#x7528;Server&#x63D0;&#x4F9B;&#x7684;&#x670D;&#x52A1;" class="headerlink" title="Client&#x5982;&#x4F55;&#x5E94;&#x7528;Server&#x63D0;&#x4F9B;&#x7684;&#x670D;&#x52A1;"></a>Client&#x5982;&#x4F55;&#x5E94;&#x7528;Server&#x63D0;&#x4F9B;&#x7684;&#x670D;&#x52A1;</h3><p>&#x8FD9;&#x91CC;&#x6709;&#x70B9;&#x7591;&#x60D1;&#xFF0C;binder&#x4F5C;&#x4E3A;&#x4E2D;&#x95F4;&#x4F20;&#x8F93;&#x5BF9;&#x8C61;&#x548C;Binder&#x9A71;&#x52A8;&#x63D0;&#x4F9B;&#x7684;ioctl&#x8FD9;&#x4E24;&#x4E2A;&#x662F;&#x4EC0;&#x4E48;&#x5173;&#x7CFB;&#xFF1F;&#x4E2D;&#x95F4;&#x80AF;&#x5B9A;&#x7ECF;&#x8FC7;&#x4E00;&#x6B21;&#x6587;&#x4EF6;&#x8BFB;&#x5199;&#x64CD;&#x4F5C;</p>
+<ul>
+<li>binder&#x5199;&#x5165;&#x8BBE;&#x5907;&#x6587;&#x4EF6;&#x6587;&#x4EF6;&#x4E2D;&#xFF0C;&#x7136;&#x540E;ioctl&#x4ECE;&#x8BBE;&#x5907;&#x6587;&#x4EF6;&#x4E2D;&#x8BFB;&#x5230;&#x6570;&#x636E;</li>
+<li>binder&#x5199;&#x5165;&#x8BBE;&#x5907;&#x6587;&#x4EF6;&#x4E2D;&#xFF0C;&#x7136;&#x540E;&#x670D;&#x52A1;&#x7AEF;&#x7684;binder&#x8BFB;&#x53D6;&#x51FA;&#x6765;</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/IPC/" rel="tag">#IPC</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/06/创建型设计模式<一>/" rel="next" title="创建型设计模式">
+                <i class="fa fa-chevron-left"></i> 创建型设计模式
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/20/Web前端学习第一天/" rel="prev" title="Web前端学习第一天">
+                Web前端学习第一天 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/09/07/Android_Binder学习笔记/"
+           data-title="Android进程通讯学习笔记01" data-url="http://yoursite.com/2016/09/07/Android_Binder学习笔记/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="吕世成" />
+          <p class="site-author-name" itemprop="name">吕世成</p>
+          <p class="site-description motion-element" itemprop="description">以零始，以零归</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">20</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#进程间通讯why"><span class="nav-number">1.</span> <span class="nav-text">进程间通讯why</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android-Binder"><span class="nav-number">2.</span> <span class="nav-text">Android Binder</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Binder驱动的创建"><span class="nav-number">2.1.</span> <span class="nav-text">Binder驱动的创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ServiceManager的创建以及提供的服务"><span class="nav-number">2.2.</span> <span class="nav-text">ServiceManager的创建以及提供的服务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ServiceManager提供哪些服务"><span class="nav-number">2.2.1.</span> <span class="nav-text">ServiceManager提供哪些服务</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Server的创建、注册、提供服务"><span class="nav-number">2.3.</span> <span class="nav-text">Server的创建、注册、提供服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Client如何应用Server提供的服务"><span class="nav-number">2.4.</span> <span class="nav-text">Client如何应用Server提供的服务</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">吕世成</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+<br>
+<div class="theme-info">
+  <span>
+    I will waiting for you at the end of my life!
+  </span>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"levblog"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("xCiENeihBaVNufe0ox3YggDs-gzGzoHsz", "fxHHNmOJXte3GrFAMTV6ILiK");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>

@@ -1,0 +1,758 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android自定义控件," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="&amp;#x539F;&amp;#x672C;&amp;#x60F3;&amp;#x76F4;&amp;#x63A5;&amp;#x5728;&amp;#x9879;&amp;#x76EE;&amp;#x4E2D;&amp;#x7528;&amp;#x63A7;&amp;#x4EF6;FlipShare&amp;#xFF0C;&amp;#x4F46;&amp;#x662F;&amp;#x53D1;&amp;#x73B0;&amp;#x4E00;&amp;#x4E2A;&amp;#x95EE;&amp;#x9898;&amp;#x5C31;&amp;#x662F;&amp;#x56F">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android自定义控件01">
+<meta property="og:url" content="http://yoursite.com/2016/10/13/Android自定义控件01/index.html">
+<meta property="og:site_name" content="Lev's World">
+<meta property="og:description" content="&amp;#x539F;&amp;#x672C;&amp;#x60F3;&amp;#x76F4;&amp;#x63A5;&amp;#x5728;&amp;#x9879;&amp;#x76EE;&amp;#x4E2D;&amp;#x7528;&amp;#x63A7;&amp;#x4EF6;FlipShare&amp;#xFF0C;&amp;#x4F46;&amp;#x662F;&amp;#x53D1;&amp;#x73B0;&amp;#x4E00;&amp;#x4E2A;&amp;#x95EE;&amp;#x9898;&amp;#x5C31;&amp;#x662F;&amp;#x56F">
+<meta property="og:image" content="http://yoursite.com/2016/10/13/Android自定义控件01/b.gif">
+<meta property="og:updated_time" content="2016-10-14T06:31:35.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android自定义控件01">
+<meta name="twitter:description" content="&amp;#x539F;&amp;#x672C;&amp;#x60F3;&amp;#x76F4;&amp;#x63A5;&amp;#x5728;&amp;#x9879;&amp;#x76EE;&amp;#x4E2D;&amp;#x7528;&amp;#x63A7;&amp;#x4EF6;FlipShare&amp;#xFF0C;&amp;#x4F46;&amp;#x662F;&amp;#x53D1;&amp;#x73B0;&amp;#x4E00;&amp;#x4E2A;&amp;#x95EE;&amp;#x9898;&amp;#x5C31;&amp;#x662F;&amp;#x56F">
+<meta name="twitter:image" content="http://yoursite.com/2016/10/13/Android自定义控件01/b.gif">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/10/13/Android自定义控件01/"/>
+
+  <title> Android自定义控件01 | Lev's World </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Lev's World</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
+            
+            留言
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Android自定义控件01
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-13T10:14:46+08:00" content="2016-10-13">
+              2016-10-13
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/13/Android自定义控件01/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/13/Android自定义控件01/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/10/13/Android自定义控件01/" class="leancloud_visitors" data-flag-title="Android自定义控件01">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/2016/10/13/Android&#x81EA;&#x5B9A;&#x4E49;&#x63A7;&#x4EF6;01/b.gif" alt=""></p>
+<p>&#x539F;&#x672C;&#x60F3;&#x76F4;&#x63A5;&#x5728;&#x9879;&#x76EE;&#x4E2D;&#x7528;&#x63A7;&#x4EF6;<a href="https://github.com/JeasonWong/FlipShare" target="_blank" rel="external">FlipShare</a>&#xFF0C;&#x4F46;&#x662F;&#x53D1;&#x73B0;&#x4E00;&#x4E2A;&#x95EE;&#x9898;&#x5C31;&#x662F;&#x56FE;&#x7247;&#x9700;&#x8981;&#x52A8;&#x6001;&#x7684;&#x53BB;&#x52A0;&#x8F7D;&#x4F1A;&#x6BD4;&#x8F83;&#x9EBB;&#x70E6;&#xFF0C;&#x6240;&#x4EE5;&#x5C31;&#x81EA;&#x5DF1;&#x7167;&#x7740;&#x8FD9;&#x4E2A;&#x6837;&#x5B50;&#x5B9E;&#x73B0;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x52A0;&#x8F7D;&#x6548;&#x679C;&#x3002;&#x4E3A;&#x4E86;&#x80FD;&#x591F;&#x914D;&#x5408;&#x7528;Glide&#xFF0C;&#x6240;&#x4EE5;&#x8FD9;&#x91CC;&#x53EA;&#x80FD;&#x7EE7;&#x627F;ViewGroup&#x53BB;&#x6DFB;&#x52A0;&#x5B50;View&#x5B9E;&#x73B0;</p>
+<p>&#x4EE5;&#x4E0B;&#x662F;&#x4E00;&#x6B21;&#x7B80;&#x5355;&#x5B9E;&#x73B0;&#x7684;&#x8BB0;&#x5F55;&#xFF0C;&#x6682;&#x65F6;&#x53EA;&#x662F;&#x4E00;&#x4E2A;&#x6A21;&#x578B;&#x51FA;&#x6765;&#xFF0C;&#x5E76;&#x672A;&#x5B8C;&#x6574;&#x7684;&#x53BB;&#x7EC4;&#x7EC7;&#x7ED3;&#x6784;&#xFF0C;&#x5927;&#x6982;&#x51FA;&#x4E86;&#x4E00;&#x4E2A;&#x6548;&#x679C;&#x3002;&#x540C;&#x65F6;&#x81EA;&#x5DF1;&#x4E5F;&#x719F;&#x6089;&#x4E86;&#x4E00;&#x6B21;&#x7EC4;&#x5408;&#x63A7;&#x4EF6;&#x7684;&#x5B9E;&#x73B0;&#x6D41;&#x7A0B;&#xFF0C;&#x540E;&#x7EED;&#x4F1A;&#x6162;&#x6162;&#x5B8C;&#x5584;&#x3002;</p>
+<p>&#x8981;&#x5B9E;&#x73B0;&#x7EC4;&#x5408;&#x63A7;&#x4EF6;&#x90A3;&#x5C31;&#x662F;&#x7EE7;&#x627F;ViewGroup&#xFF0C;&#x4E3B;&#x8981;&#x5B9E;&#x73B0;<code>onMeasure</code> -&gt; <code>measureWidth</code> -&gt; <code>onDraw</code>&#x3002;&#x81F3;&#x4E8E;<code>onDraw</code>&#x65B9;&#x6CD5;&#x76F4;&#x63A5;&#x8C03;&#x7528;&#x7236;&#x7C7B;&#xFF0C;&#x7236;&#x7C7B;&#x4F1A;&#x4F9D;&#x6B21;&#x8C03;&#x7528;&#x5B50;View&#x7684;onDraw&#x65B9;&#x6CD5;&#x3002;</p>
+<a id="more"></a>
+<p>&#x6309;&#x7167;&#x5B9E;&#x73B0;&#x7684;&#x6B65;&#x9AA4;&#x6765;</p>
+<h2 id="onMeasure"><a href="#onMeasure" class="headerlink" title="onMeasure"></a>onMeasure</h2><ol>
+<li><a href="http://blog.csdn.net/cyp331203/article/details/45027641" target="_blank" rel="external">&#x8BE6;&#x89E3;onMeasure()&#x65B9;&#x6CD5;&#x4E2D;&#x5982;&#x4F55;&#x6D4B;&#x91CF;&#x4E00;&#x4E2A;&#x63A7;&#x4EF6;&#x5C3A;&#x5BF8;(&#x4E00;)</a>&#x8FD9;&#x7BC7;&#x6587;&#x7AE0;&#x5BF9;onMeasure&#x8BB2;&#x7684;&#x6BD4;&#x8F83;&#x7B80;&#x5355;&#x6613;&#x61C2;&#xFF0C;&#x53EF;&#x4EE5;&#x5148;&#x4E86;&#x89E3;&#x4E00;&#x4E0B;&#x6D4B;&#x91CF;&#x76F8;&#x5173;&#x7684;&#x77E5;&#x8BC6;&#x3002;</li>
+<li><a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/1002/3540.html" target="_blank" rel="external">&#x81EA;&#x5B9A;&#x4E49;ViewGroup&#x63D0;&#x9AD8;&#x6027;&#x80FD;</a>&#x8FD9;&#x4E2A;&#x5BF9;&#x6D4B;&#x91CF;&#x5199;&#x7684;&#x6BD4;&#x8F83;&#x5168;&#x9762;</li>
+</ol>
+<p>view&#x6709;&#x4E00;&#x4E2A;&#x9ED8;&#x8BA4;&#x7684;onMeasure&#x5B9E;&#x73B0;&#xFF0C;onMeasure&#x662F;&#x6240;&#x6709;view&#x5B50;&#x7C7B;&#x90FD;&#x5177;&#x6709;&#x7684;&#x65B9;&#x6CD5;&#x3002;</p>
+<p>&#x5F53;&#x524D;&#x5B9E;&#x73B0;&#x7684;&#x63A7;&#x4EF6;&#x91CC;&#xFF0C;onMeasure&#x7684;&#x5B9E;&#x73B0;&#x5982;&#x4E0B;&#xFF1A;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">@Override</div><div class="line">protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {</div><div class="line">    super.onMeasure(widthMeasureSpec, heightMeasureSpec);</div><div class="line"></div><div class="line">    int measureWidth = measureWidth(widthMeasureSpec);</div><div class="line">    int measureHeight = measureHeight(heightMeasureSpec);</div><div class="line"></div><div class="line">    // &#x8BA1;&#x7B97;&#x81EA;&#x5B9A;&#x4E49;&#x7684;ViewGroup&#x4E2D;&#x6240;&#x6709;&#x5B50;&#x63A7;&#x4EF6;&#x7684;&#x5927;&#x5C0F;</div><div class="line">    measureChildren(widthMeasureSpec, heightMeasureSpec);</div><div class="line"></div><div class="line">    // &#x4FDD;&#x5B58;&#x6D4B;&#x540E;ViewGroup&#x7684;&#x5C3A;&#x5BF8;</div><div class="line">    setMeasuredDimension(measureWidth, measureHeight);</div><div class="line">}</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">private int measureWidth(int pWidthMeasureSpec) {</div><div class="line">    int result = 0;</div><div class="line">    int widthMode = MeasureSpec.getMode(pWidthMeasureSpec);// &#x5F97;&#x5230;&#x6A21;&#x5F0F;</div><div class="line">    int widthSize = MeasureSpec.getSize(pWidthMeasureSpec);// &#x5F97;&#x5230;&#x5C3A;&#x5BF8;</div><div class="line"></div><div class="line">    switch (widthMode) {</div><div class="line">        case MeasureSpec.AT_MOST:</div><div class="line">        case MeasureSpec.EXACTLY:</div><div class="line">            result = widthSize;</div><div class="line">            break;</div><div class="line">    }</div><div class="line">    return result;</div><div class="line">}</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">private int measureHeight(int pHeightMeasureSpec) {</div><div class="line">    int result = 0;</div><div class="line"></div><div class="line">    int heightMode = MeasureSpec.getMode(pHeightMeasureSpec);</div><div class="line">    int heightSize = MeasureSpec.getSize(pHeightMeasureSpec);</div><div class="line"></div><div class="line">    switch (heightMode) {</div><div class="line">        case MeasureSpec.AT_MOST:</div><div class="line">        case MeasureSpec.EXACTLY:</div><div class="line">            result = heightSize;</div><div class="line">            break;</div><div class="line">    }</div><div class="line">    return result;</div><div class="line">}</div></pre></td></tr></table></figure>
+<p>&#x5176;&#x5B9E;&#x4ECE;&#x63A8;&#x8350;&#x7684;&#x6587;&#x7AE0;&#x4E2D;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x77E5;&#x9053;&#xFF0C;View&#x7684;&#x6D4B;&#x91CF;&#x662F;&#x4E00;&#x7EA7;&#x4E00;&#x7EA7;&#x4F20;&#x9012;&#x4E0B;&#x6765;&#x7684;&#x3002;onMeasure&#x65B9;&#x6CD5;&#x4E2D;&#x4F20;&#x9012;&#x8FC7;&#x6765;&#x7684;&#x662F;&#x7236;view&#x7684;&#x5C3A;&#x5BF8;&#x548C;&#x6A21;&#x5F0F;&#x4FE1;&#x606F;&#xFF0C;&#x5728;ViewGroup&#x4E2D;&#x7ED3;&#x5408;&#x81EA;&#x8EAB;&#x7684;LayoutParams&#x8FDB;&#x884C;&#x6D4B;&#x8BD5;&#x3002;params&#x82E5;&#x662F;<code>WRAP_CONTENT</code>,&#x5219;&#x9700;&#x8981;&#x81EA;&#x5DF1;&#x5199;&#x4EE3;&#x7801;&#x7D2F;&#x52A0;&#x6240;&#x6709;View&#x7684;&#x5C3A;&#x5BF8;&#xFF1B;&#x82E5;&#x662F;<code>MATCH_PARENT</code>&#x5219;&#x6BD4;&#x8F83;&#x7B80;&#x5355;&#xFF0C;&#x76F4;&#x63A5;&#x8FD4;&#x56DE;&#x7236;view&#x4F20;&#x9012;&#x8FC7;&#x6765;&#x7684;&#x5BBD;&#x9AD8;&#x5C31;&#x884C;&#x4E86;&#x3002;&#x6240;&#x4EE5;&#x4F60;&#x4F1A;&#x53D1;&#x73B0;&#x5728;&#x4E0A;&#x9762;&#x6211;&#x5E76;&#x6CA1;&#x6709;&#x505A;&#x5F97;&#x90A3;&#x4E48;&#x7EC6;&#x81F4;&#x7684;&#x533A;&#x5206;&#xFF0C;&#x53EA;&#x662F;&#x7B80;&#x5355;&#x7C97;&#x66B4;&#x7684;&#x5168;&#x90E8;&#x8FD4;&#x56DE;&#x7236;view&#x7684;&#x5BBD;&#x5EA6;&#x548C;&#x9AD8;&#x5EA6;&#xFF0C;&#x5BF9;&#x4E8E;&#x5F53;&#x524D;&#x8BBE;&#x7F6E;&#x7684;params&#x89C6;&#x82E5;&#x65E0;&#x7779;&#x3002;&#x56E0;&#x4E3A;&#x8FD9;&#x91CC;&#x6211;&#x9700;&#x8981;&#x7684;&#x5C31;&#x662F;&#x5168;&#x5C4F;&#xFF0C;&#x4E5F;&#x5C31;&#x6CA1;&#x6709;&#x53BB;&#x5904;&#x7406;&#x5176;&#x4ED6;&#x60C5;&#x51B5;&#x3002;</p>
+<p>&#x901A;&#x4FD7;&#x7684;&#x8BB2;&#x6D4B;&#x91CF;&#x5C31;&#x662F;&#x5206;&#x5730;&#x513F;&#xFF0C;&#x4ECE;&#x4E0A;&#x5F80;&#x4E0B;&#x5206;&#x3002;&#x5C31;&#x50CF;&#x4E2D;&#x592E;&#x5230;&#x5730;&#x65B9;&#x3002;&#x800C;&#x89C4;&#x5219;&#x5C31;&#x662F;<code>MeasureSpec</code>&#xFF0C;measureSpec&#x4E3A;int&#x503C;&#xFF0C;&#x603B;&#x5171;4&#x4E2A;&#x5B57;&#x8282;,&#x9AD8;2&#x4F4D;&#x8868;&#x793A;mode,&#x4F4E;30&#x4F4D;&#x8868;&#x793A;size&#x3002;</p>
+<h2 id="onLayout"><a href="#onLayout" class="headerlink" title="onLayout"></a>onLayout</h2><p>&#x6D4B;&#x91CF;&#x7ED3;&#x675F;&#x5C31;&#x8BE5;&#x5E03;&#x5C40;&#x4E86;&#x3002;onLayout&#x76F8;&#x5BF9;&#x8981;&#x7B80;&#x5355;&#x4E00;&#x4E9B;&#xFF0C;&#x5C31;&#x662F;&#x4F9D;&#x6B21;&#x904D;&#x5386;&#x5B50;Veiw&#xFF0C;&#x8BBE;&#x7F6E;View&#x7684;layout&#x3002;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">@Override</div><div class="line">protected void onLayout(boolean changed, int l, int t, int r, int b) {</div><div class="line"></div><div class="line">    Log.e(TAG, &quot;parentViewHeight : &quot; + parentViewHeight</div><div class="line">            + &quot;, parentViewWidth : &quot; + parentViewWidth</div><div class="line">            + &quot;, parentLeft : &quot; + parentLeft</div><div class="line">            + &quot;, parentTop : &quot; + parentTop);</div><div class="line"></div><div class="line">    for (int i = 0; i &lt; getChildCount(); i++) {</div><div class="line">        View view = getChildAt(i);</div><div class="line"></div><div class="line">        int viewBottom = parentTop - parentViewHeight * i;</div><div class="line">        view.layout(parentLeft, viewBottom - parentViewHeight, parentLeft + parentViewWidth, parentTop - parentViewHeight * i);</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+<h2 id="&#x6DFB;&#x52A0;&#x52A8;&#x753B;"><a href="#&#x6DFB;&#x52A0;&#x52A8;&#x753B;" class="headerlink" title="&#x6DFB;&#x52A0;&#x52A8;&#x753B;"></a>&#x6DFB;&#x52A0;&#x52A8;&#x753B;</h2><p>&#x6700;&#x540E;&#x5E03;&#x5C40;&#x90FD;&#x5B9A;&#x4E49;&#x597D;&#x4E86;&#xFF0C;&#x5C31;&#x6DFB;&#x52A0;&#x4E0A;&#x663E;&#x793A;&#x52A8;&#x753B;&#x5C31;&#x5B8C;&#x4E86;&#x3002;</p>
+<p>android&#x52A8;&#x753B;&#x6211;&#x5C31;&#x4E0D;&#x4ECB;&#x7ECD;&#x4E86;&#xFF0C;&#x7F51;&#x4E0A;&#x76F8;&#x5173;&#x7684;&#x6BD4;&#x8F83;&#x591A;&#xFF0C;&#x8FD9;&#x91CC;&#x6211;&#x4EEC;&#x7528;&#x5230;&#x4E86;&#x5C5E;&#x6027;&#x52A8;&#x753B;&#xFF08;3.0&#x52A0;&#x5165;&#x7684;&#xFF09;&#x3002;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">// &#x5F00;&#x59CB;&#x663E;&#x793A;&#x52A8;&#x753B;</div><div class="line">public void startAnim() {</div><div class="line">    for (int i = 0; i &lt; getChildCount(); i++) {</div><div class="line">        final View view = getChildAt(i);</div><div class="line">        ValueAnimator flipAnim = ValueAnimator.ofFloat(-90, 8, 0);</div><div class="line">        flipAnim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {</div><div class="line">            @Override</div><div class="line">            public void onAnimationUpdate(ValueAnimator animation) {</div><div class="line">                float value = (float) animation.getAnimatedValue();</div><div class="line">                view.setVisibility(View.VISIBLE);</div><div class="line">                view.setPivotY(parentViewHeight);</div><div class="line">                view.setRotationX(value);</div><div class="line">            }</div><div class="line">        });</div><div class="line">        flipAnim.setDuration(300);</div><div class="line">        flipAnim.setStartDelay(300 * i);</div><div class="line">        flipAnim.start();</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android自定义控件/" rel="tag">#Android自定义控件</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/21/Java多线程 第一章/" rel="next" title="Java多线程 第一章">
+                <i class="fa fa-chevron-left"></i> Java多线程 第一章
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/13/Js笔记/" rel="prev" title="Js笔记">
+                Js笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/10/13/Android自定义控件01/"
+           data-title="Android自定义控件01" data-url="http://yoursite.com/2016/10/13/Android自定义控件01/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="吕世成" />
+          <p class="site-author-name" itemprop="name">吕世成</p>
+          <p class="site-description motion-element" itemprop="description">以零始，以零归</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">20</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#onMeasure"><span class="nav-number">1.</span> <span class="nav-text">onMeasure</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#onLayout"><span class="nav-number">2.</span> <span class="nav-text">onLayout</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加动画"><span class="nav-number">3.</span> <span class="nav-text">添加动画</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">吕世成</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+<br>
+<div class="theme-info">
+  <span>
+    I will waiting for you at the end of my life!
+  </span>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"levblog"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("xCiENeihBaVNufe0ox3YggDs-gzGzoHsz", "fxHHNmOJXte3GrFAMTV6ILiK");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>

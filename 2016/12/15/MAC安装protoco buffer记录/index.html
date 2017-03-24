@@ -1,0 +1,769 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="ProtocolBuffer," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="&amp;#x5B89;&amp;#x88C5;&amp;#x6D41;&amp;#x7A0B;&amp;#x6700;&amp;#x8FD1;&amp;#x4E00;&amp;#x4E2A;Android&amp;#x9879;&amp;#x76EE;&amp;#x4E2D;&amp;#x7528;&amp;#x5230;ProtocolBuffer&amp;#xFF0C;&amp;#x6240;&amp;#x4EE5;&amp;#x9700;&amp;#x8981;&amp;#x6298;&amp;#x817E;&amp;#x4E00;&amp;#x4E0B;&amp;#x">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MAC安装protoco buffer记录">
+<meta property="og:url" content="http://yoursite.com/2016/12/15/MAC安装protoco buffer记录/index.html">
+<meta property="og:site_name" content="Lev's World">
+<meta property="og:description" content="&amp;#x5B89;&amp;#x88C5;&amp;#x6D41;&amp;#x7A0B;&amp;#x6700;&amp;#x8FD1;&amp;#x4E00;&amp;#x4E2A;Android&amp;#x9879;&amp;#x76EE;&amp;#x4E2D;&amp;#x7528;&amp;#x5230;ProtocolBuffer&amp;#xFF0C;&amp;#x6240;&amp;#x4EE5;&amp;#x9700;&amp;#x8981;&amp;#x6298;&amp;#x817E;&amp;#x4E00;&amp;#x4E0B;&amp;#x">
+<meta property="og:updated_time" content="2016-12-15T03:25:09.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MAC安装protoco buffer记录">
+<meta name="twitter:description" content="&amp;#x5B89;&amp;#x88C5;&amp;#x6D41;&amp;#x7A0B;&amp;#x6700;&amp;#x8FD1;&amp;#x4E00;&amp;#x4E2A;Android&amp;#x9879;&amp;#x76EE;&amp;#x4E2D;&amp;#x7528;&amp;#x5230;ProtocolBuffer&amp;#xFF0C;&amp;#x6240;&amp;#x4EE5;&amp;#x9700;&amp;#x8981;&amp;#x6298;&amp;#x817E;&amp;#x4E00;&amp;#x4E0B;&amp;#x">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/12/15/MAC安装protoco buffer记录/"/>
+
+  <title> MAC安装protoco buffer记录 | Lev's World </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Lev's World</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
+            
+            留言
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                MAC安装protoco buffer记录
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-15T10:42:30+08:00" content="2016-12-15">
+              2016-12-15
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/15/MAC安装protoco buffer记录/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/15/MAC安装protoco buffer记录/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/12/15/MAC安装protoco buffer记录/" class="leancloud_visitors" data-flag-title="MAC安装protoco buffer记录">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="&#x5B89;&#x88C5;&#x6D41;&#x7A0B;"><a href="#&#x5B89;&#x88C5;&#x6D41;&#x7A0B;" class="headerlink" title="&#x5B89;&#x88C5;&#x6D41;&#x7A0B;"></a>&#x5B89;&#x88C5;&#x6D41;&#x7A0B;</h2><p>&#x6700;&#x8FD1;&#x4E00;&#x4E2A;Android&#x9879;&#x76EE;&#x4E2D;&#x7528;&#x5230;ProtocolBuffer&#xFF0C;&#x6240;&#x4EE5;&#x9700;&#x8981;&#x6298;&#x817E;&#x4E00;&#x4E0B;&#x73AF;&#x5883;&#x3002;&#x9047;&#x5230;&#x5404;&#x79CD;&#x5751;&#xFF0C;&#x4E5F;&#x66B4;&#x9732;&#x9664;&#x4E86;&#x5BF9;mac&#x4E0B;&#x73AF;&#x5883;&#x914D;&#x7F6E;&#x7684;&#x4E0D;&#x8DB3;&#x4E4B;&#x5904;&#xFF0C;&#x8FD9;&#x91CC;&#x505A;&#x4E0B;&#x8BB0;&#x5F55;&#x3002;</p>
+<p>&#x9996;&#x5148;&#x51C6;&#x5907;protobuf&#x7684;&#x5B89;&#x88C5;&#x5305;&#xFF0C;&#x9700;&#x8981;&#x624B;&#x52A8;&#x73B0;&#x5728;&#x7F16;&#x8BD1;&#x5B89;&#x88C5;&#x3002;<a href="https://github.com/google/protobuf/releases" target="_blank" rel="external">google/protobuf</a> &#x7248;&#x672C;&#x9700;&#x8981;&#x5BF9;&#x5E94;&#x3002;&#x7F16;&#x8BD1;&#x7248;&#x672C;&#x548C;&#x540E;&#x9762;&#x4F7F;&#x7528;&#x7684;jar&#x5305;&#x8981;&#x4E00;&#x81F4;&#x3002;&#xFF08;Protocol Buffers v3.1.0&#xFF09;&#x4E0B;&#x8F7D;&#x5B8C;&#x4E4B;&#x540E;&#x89E3;&#x538B;&#x8FDB;&#x5165;&#x6587;&#x4EF6;&#x5C31;&#x662F;&#x7F16;&#x8BD1;&#x5B89;&#x88C5;&#x4E86;&#xFF0C;&#x6267;&#x884C;&#x4E00;&#x4E0B;&#x6307;&#x4EE4;</p>
+<pre><code>bogon:protobuf-3.1.0 lvshicheng$ ./autogen.sh 
+bogon:protobuf-3.1.0 lvshicheng$ ./configure 
+bogon:protobuf-3.1.0 lvshicheng$ make
+bogon:protobuf-3.1.0 lvshicheng$ makeinstall
+bogon:protobuf-3.1.0 lvshicheng$ protoc --version
+libprotoc 3.1.0
+</code></pre><a id="more"></a>
+<p>&#x5B89;&#x88C5;&#x5B8C;&#x6210;&#x540E;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;protoc&#x6307;&#x4EE4;&#x67E5;&#x770B;&#x7248;&#x672C;&#x53F7;&#x8FDB;&#x884C;&#x786E;&#x8BA4;&#x3002;</p>
+<p>&#x5B89;&#x88C5;&#x8FC7;&#x7A0B;&#x4E2D;&#x4F1A;&#x63D0;&#x793A;&#x7F3A;&#x5C11;&#x4E00;&#x4E9B;&#x4F9D;&#x8D56;&#xFF0C;&#x6309;&#x7167;&#x63D0;&#x793A;&#x5B89;&#x88C5;&#x5C31;&#x884C;&#x3002;&#x4EE5;&#x4E0B;&#x662F;&#x9700;&#x8981;&#x5B89;&#x88C5;&#x597D;&#x7684;&#x4F9D;&#x8D56;</p>
+<ul>
+<li>automake 1.15</li>
+<li>autoconf 2.69</li>
+<li>libtool 2.4.2</li>
+</ul>
+<p>automake&#x548C;autoconf&#x76F4;&#x63A5;&#x4F7F;&#x7528;brew&#x5B89;&#x88C5;&#x5373;&#x53EF;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">brew install automake</div><div class="line">brew install autoconf</div></pre></td></tr></table></figure>
+<p>&#x7531;&#x4E8E;3.1.0&#x7248;&#x672C;&#x4F9D;&#x8D56;&#x7684;&#x662F;2.4.2&#x7248;&#x672C;&#x7684;libtool&#xFF0C;&#x800C;mac&#x7CFB;&#x7EDF;&#x81EA;&#x5E26;&#x7684;libtoo&#x662F;2.4.6&#xFF0C;&#x9700;&#x8981;&#x624B;&#x52A8;&#x4E0B;&#x8F7D;2.4.2&#x7684;&#x5B89;&#x88C5;&#x5305;&#xFF0C;&#x624B;&#x52A8;&#x5B89;&#x88C5;&#xFF0C;<a href="http://mirrors.ustc.edu.cn/gnu/libtool/" target="_blank" rel="external">libtool&#x4E0B;&#x8F7D;&#x5730;&#x5740;</a> &#x8FD8;&#x662F;&#x89E3;&#x538B;&#x7F16;&#x8BD1;&#x5B89;&#x88C5;&#x8001;&#x5957;&#x8DEF;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">bogon:libtool-2.4.2 lvshicheng$ ./configure</div><div class="line">bogon:libtool-2.4.2 lvshicheng$ make</div><div class="line">bogon:libtool-2.4.2 lvshicheng$ make install</div></pre></td></tr></table></figure>
+<h2 id="&#x5173;&#x4E8E;&#x5B89;&#x88C5;1-4-2&#x7248;&#x672C;&#x7684;&#x722C;&#x5751;&#x8BB0;"><a href="#&#x5173;&#x4E8E;&#x5B89;&#x88C5;1-4-2&#x7248;&#x672C;&#x7684;&#x722C;&#x5751;&#x8BB0;" class="headerlink" title="&#x5173;&#x4E8E;&#x5B89;&#x88C5;1.4.2&#x7248;&#x672C;&#x7684;&#x722C;&#x5751;&#x8BB0;"></a>&#x5173;&#x4E8E;&#x5B89;&#x88C5;1.4.2&#x7248;&#x672C;&#x7684;&#x722C;&#x5751;&#x8BB0;</h2><p>&#x7531;&#x4E8E;&#x5B89;&#x88C5;&#x8FC7;&#x7A0B;&#x4E2D;&#x63D0;&#x793A;&#x9700;&#x8981;&#x4F9D;&#x8D56;<code>libtool2.4.2</code>&#x7248;&#x672C;&#xFF0C;&#x672C;&#x60F3;&#x76F4;&#x63A5;&#x7528;brew&#x5B89;&#x88C5;&#xFF0C;&#x53EF;&#x4EE5;brew&#x4E0A;&#x9762;&#x53EA;&#x6709;2.4.6&#x7248;&#x672C;&#x3002;&#x6240;&#x4EE5;&#x53EA;&#x80FD;&#x624B;&#x52A8;&#x5B89;&#x88C5;&#x3002;</p>
+<p>&#x5B89;&#x88C5;&#x5B8C;&#x6210;&#x540E;&#x5C31;&#x8981;&#x914D;&#x7F6E;PATH&#xFF0C;&#x8FD9;&#x4E2A;&#x6700;&#x5934;&#x75BC;&#x3002;&#x8FD9;&#x91CC;&#x9700;&#x8981;&#x7406;&#x6E05;&#x695A;&#x7CFB;&#x7EDF;&#x9700;&#x8981;&#x67E5;&#x627E;&#x4E00;&#x4E2A;&#x6267;&#x884C;&#x6587;&#x4EF6;&#x65F6;&#x7684;&#x4F9D;&#x6B21;&#x987A;&#x5E8F;&#x5C31;&#x597D;&#xFF0C;&#x7136;&#x540E;&#x628A;&#x624B;&#x52A8;&#x5B89;&#x88C5;&#x7684;libtool&#x7684;&#x8DEF;&#x5F84;&#x653E;&#x5728;&#x7CFB;&#x7EDF;libtool&#x8DEF;&#x5F84;&#x7684;&#x524D;&#x9762;&#x5C31;&#x884C;&#x3002;</p>
+<p>mac&#x4E0B;&#x7684;&#x8DEF;&#x5F84;&#x4E00;&#x822C;&#x662F;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">/etc/profile </div><div class="line">/etc/paths </div><div class="line">~/.bash_profile </div><div class="line">~/.bash_login </div><div class="line">~/.profile </div><div class="line">~/.bashrc</div></pre></td></tr></table></figure>
+<p>&#x5F53;&#x7136;<code>/etc/profile</code>&#x548C;<code>/etc/paths</code>&#x662F;&#x7CFB;&#x7EDF;&#x7EA7;&#x522B;&#x7684;&#xFF0C;&#x7CFB;&#x7EDF;&#x542F;&#x52A8;&#x5C31;&#x4F1A;&#x52A0;&#x8F7D;&#xFF0C;&#x540E;&#x9762;&#x51E0;&#x4E2A;&#x662F;&#x5F53;&#x524D;&#x7528;&#x6237;&#x7EA7;&#x7684;&#x73AF;&#x5883;&#x53D8;&#x91CF;&#x3002;&#x540E;&#x9762;3&#x4E2A;&#x6309;&#x7167;&#x4ECE;&#x524D;&#x5F80;&#x540E;&#x7684;&#x987A;&#x5E8F;&#x8BFB;&#x53D6;&#xFF0C;&#x5982;&#x679C;<code>~/.bash_profile</code>&#x6587;&#x4EF6;&#x5B58;&#x5728;&#xFF0C;&#x5219;&#x540E;&#x9762;&#x7684;&#x51E0;&#x4E2A;&#x6587;&#x4EF6;&#x5C31;&#x4F1A;&#x88AB;&#x5FFD;&#x7565;&#x4E0D;&#x8BFB;&#x4E86;&#xFF0C;&#x5982;&#x679C;~/.bash_profile&#x6587;&#x4EF6;&#x4E0D;&#x5B58;&#x5728;&#xFF0C;&#x624D;&#x4F1A;&#x4EE5;&#x6B64;&#x7C7B;&#x63A8;&#x8BFB;&#x53D6;&#x540E;&#x9762;&#x7684;&#x6587;&#x4EF6;&#x3002;~/.bashrc&#x6CA1;&#x6709;&#x4E0A;&#x8FF0;&#x89C4;&#x5219;&#xFF0C;&#x5B83;&#x662F;bash shell&#x6253;&#x5F00;&#x7684;&#x65F6;&#x5019;&#x8F7D;&#x5165;&#x7684;&#x3002;</p>
+<p>&#x624B;&#x52A8;&#x5B89;&#x88C5;&#x7684;libtool&#x8DEF;&#x5F84;&#x5728;<code>/usr/local/bin</code>,&#x800C;&#x7CFB;&#x7EDF;&#x9ED8;&#x8BA4;&#x5728;<code>/usr/bin</code>,&#x6240;&#x6709;&#x8FD9;&#x91CC;&#x6211;&#x53EA;&#x8981;&#x8BA9;&#x7CFB;&#x7EDF;&#x9996;&#x5148;&#x53BB;<code>/usr/local/bin</code>&#x4E0B;&#x9762;&#x627E;&#x5C31;&#x884C;&#x4E86;&#x3002;</p>
+<p>&#x4E8E;&#x662F;&#x5728;<code>~/.bash_profile</code>&#x4E2D;&#x4FEE;&#x6539;&#x987A;&#x5E8F;&#x5982;&#x4E0B;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">PATH = /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</div></pre></td></tr></table></figure></p>
+<p>&#x8FD9;&#x6837;&#x4FEE;&#x6539;&#x5B8C;&#x540E;&#x6267;&#x884C;<code>source .bash_profile</code>&#x8BA9;&#x914D;&#x7F6E;&#x751F;&#x6548;&#xFF0C;&#x518D;&#x6B21;&#x68C0;&#x67E5;&#x7248;&#x672C;&#x5C31;&#x53EF;&#x4EE5;&#x4E86;&#x3002;</p>
+<ul>
+<li>confuse<br>&#x8FD9;&#x91CC;&#x8FD8;&#x6709;&#x4E2A;&#x7591;&#x95EE;&#xFF0C;&#x6211;&#x53D1;&#x73B0;<code>/etc/paths</code>&#x7684;&#x8DEF;&#x5F84;&#x4F1A;&#x88AB;&#x672C;&#x5730;&#x7684;<code>.bash_profile</code>&#x7684;&#x914D;&#x7F6E;&#x8986;&#x76D6;&#x3002;&#x4E0D;&#x77E5;&#x9053;&#x8BE5;&#x600E;&#x4E48;&#x53BB;&#x9A8C;&#x8BC1;&#x662F;&#x5426;&#x5982;&#x6B64;&#xFF0C;&#x4F46;&#x662F;&#x770B;&#x73B0;&#x8C61;&#x786E;&#x5B9E;&#x662F;&#x8FD9;&#x6837;&#x3002;</li>
+</ul>
+<h2 id="&#x6700;&#x540E;"><a href="#&#x6700;&#x540E;" class="headerlink" title="&#x6700;&#x540E;"></a>&#x6700;&#x540E;</h2><p>&#x6700;&#x540E;&#x8981;&#x8BB0;&#x4F4F;&#x5C06;&#x4EE5;&#x524D;&#x7684;protobuf&#x6587;&#x4EF6;&#x5220;&#x9664;&#xFF0C;&#x91CD;&#x65B0;&#x89E3;&#x538B;&#x7136;&#x540E;&#x8FDB;&#x884C;&#x64CD;&#x4F5C;&#x3002;&#x56E0;&#x4E3A;&#x5982;&#x679C;&#x8FD8;&#x7528;&#x4E4B;&#x524D;&#x7684;&#x53BB;&#x914D;&#x7F6E;&#xFF0C;&#x91CC;&#x9762;&#x7684;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x662F;&#x4F9D;&#x8D56;&#x4E0A;&#x4E00;&#x4E2A;&#x7248;&#x672C;&#x751F;&#x6210;&#x7684;&#xFF0C;&#x4F1A;&#x51FA;&#x73B0;&#x5404;&#x79CD;&#x5751;&#x3002;&#x5207;&#x8BB0;&#xFF01;&#xFF01;</p>
+<blockquote>
+<p>@&#x6700;&#x540E; &#x4E0E;&#x5176;&#x82DF;&#x5EF6;&#x6B8B;&#x5598;&#xFF0C;&#x4E0D;&#x5982;&#x7EB5;&#x60C5;&#x71C3;&#x70E7;&#xFF01;</p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ProtocolBuffer/" rel="tag">#ProtocolBuffer</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/31/Js笔记 - call和aply/" rel="next" title="Js笔记 - call和aply">
+                <i class="fa fa-chevron-left"></i> Js笔记 - call和aply
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/15/ProtocolBuffer使用/" rel="prev" title="protoco buffer使用">
+                protoco buffer使用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/12/15/MAC安装protoco buffer记录/"
+           data-title="MAC安装protoco buffer记录" data-url="http://yoursite.com/2016/12/15/MAC安装protoco buffer记录/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="吕世成" />
+          <p class="site-author-name" itemprop="name">吕世成</p>
+          <p class="site-description motion-element" itemprop="description">以零始，以零归</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">20</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装流程"><span class="nav-number">1.</span> <span class="nav-text">安装流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于安装1-4-2版本的爬坑记"><span class="nav-number">2.</span> <span class="nav-text">关于安装1.4.2版本的爬坑记</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后"><span class="nav-number">3.</span> <span class="nav-text">最后</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">吕世成</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+<br>
+<div class="theme-info">
+  <span>
+    I will waiting for you at the end of my life!
+  </span>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"levblog"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("xCiENeihBaVNufe0ox3YggDs-gzGzoHsz", "fxHHNmOJXte3GrFAMTV6ILiK");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>
